@@ -25,8 +25,6 @@ public class Morra {
     boolean error = true;
 
     // Initialize variables
-    String input = "";
-    String fingerSum[] = new String[2];
     String playerFingersString = "";
     String playerSumString = "";
 
@@ -34,8 +32,8 @@ public class Morra {
     while (error) {
 
       // Get input from user
-      input = Utils.scanner.nextLine();
-      fingerSum = input.split(" ");
+      String input = Utils.scanner.nextLine();
+      String[] fingerSum = input.split(" ");
       playerFingersString = fingerSum[0];
       playerSumString = fingerSum[1];
 
