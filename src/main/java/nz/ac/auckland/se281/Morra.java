@@ -39,7 +39,7 @@ public class Morra {
       playerFingersString = fingerSum[0];
       playerSumString = fingerSum[1];
 
-      // Check if input are integers
+      // Check if inputs are integers
       if (!Utils.isInteger(playerFingersString) || !Utils.isInteger(playerSumString)) {
         MessageCli.INVALID_INPUT.printMessage();
         error = true;
