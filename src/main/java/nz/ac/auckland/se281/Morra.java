@@ -30,6 +30,15 @@ public class Morra {
       return;
     }
 
+    int playerFingers = Integer.parseInt(playerFingersString);
+    int playerSum = Integer.parseInt(playerSumString);
+
+    if(playerFingers < 1 || playerFingers > 5 || playerSum < 1 || playerSum > 10){
+      MessageCli.INVALID_INPUT.printMessage();
+      return;
+    }
+
+
   }
 
   public void showStats() {}
