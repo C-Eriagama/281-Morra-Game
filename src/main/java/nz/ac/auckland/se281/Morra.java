@@ -10,6 +10,7 @@ public class Morra {
   private int round = 0;
   private String name = "";
   private DifficultyLevel difficultyLevel;
+  private String Jarvis = "Jarvis";
 
   public Morra() {
   }
@@ -30,9 +31,15 @@ public class Morra {
     MessageCli.ASK_INPUT.printMessage();
     boolean error = true;
 
-    // Initialize variables
+    // Initialize round variables
     String playerFingersString = "";
     String playerSumString = "";
+    int playerFingers = 0;
+    int playerSum = 0;
+
+    // Get computer input
+    int jarvisFingers = difficultyLevel.getStrategy().determineFingers();
+    int jarvisSum = difficultyLevel.getStrategy().determineSum();
 
     // error checking
     while (error) {
@@ -50,8 +57,8 @@ public class Morra {
         continue;
       }
 
-      int playerFingers = Integer.parseInt(playerFingersString);
-      int playerSum = Integer.parseInt(playerSumString);
+      playerFingers = Integer.parseInt(playerFingersString);
+      playerSum = Integer.parseInt(playerSumString);
 
       // Check if inputs are within range
       if (playerFingers < 1 || playerFingers > 5 || playerSum < 1 || playerSum > 10) {
@@ -64,15 +71,30 @@ public class Morra {
       error = false;
     }
 
-    // Print out input if passes error checking
+    // Print out User input and Jarvis inputn if passes error checking
     MessageCli.PRINT_INFO_HAND.printMessage(name, playerFingersString, playerSumString);
 
-    // Get computer input
-    int jarvisFingers = difficultyLevel.getStrategy().determineFingers();
-    int jarvisSum = difficultyLevel.getStrategy().determineSum();
-
-    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", Integer.toString(jarvisFingers),
+    MessageCli.PRINT_INFO_HAND.printMessage(Jarvis, Integer.toString(jarvisFingers),
         Integer.toString(jarvisSum));
+
+    // Calculate the winner of the round
+    roundResult(playerFingers, playerSum, jarvisFingers, jarvisSum);
+  }
+
+  // Method to calculate the winner of the round
+  public void roundResult(int playerFingers, int playerSum, int jarvisFingers, int jarvisSum) {
+    int sum = playerFingers + jarvisFingers;
+    String winner = "";
+
+    if (playerSum == jarvisSum || (playerSum != sum && jarvisSum != sum)) {
+      winner = "DRAW";
+    } else if (playerSum == sum) {
+      winner = "HUMAN_WINS";
+    } else {
+      winner = "AI_WINS";
+    }
+
+    MessageCli.PRINT_OUTCOME_ROUND.printMessage(winner);
   }
 
   public void showStats() {
