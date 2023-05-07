@@ -16,7 +16,7 @@ public class MediumDifficulty extends DifficultyLevel {
 
     @Override
     public void updateStrategy() {
-        if (moveHistory.size() == 4) {
+        if (moveHistory.size() == 3) {
             this.setStrategy(new AverageStrategy(moveHistory));
         }
     }

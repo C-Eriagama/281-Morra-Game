@@ -22,15 +22,17 @@ public class Morra {
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(name);
+    moveHistory.clear();
 
     // Create difficulty level
-    difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty);
+    difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty, moveHistory);
   }
 
   public void play() {
 
     // Start new round and ask for input
     round++;
+    difficultyLevel.updateStrategy();
     MessageCli.START_ROUND.printMessage(Integer.toString(round));
     boolean error = true;
 
