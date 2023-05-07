@@ -1,5 +1,8 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.difficulties.DifficultyFactory;
 import nz.ac.auckland.se281.difficulties.DifficultyLevel;
@@ -11,6 +14,7 @@ public class Morra {
   private String name = "";
   private DifficultyLevel difficultyLevel;
   private String jarvis = "Jarvis";
+  private List<Integer> moveHistory = new ArrayList<>();
 
   public Morra() {
   }
@@ -82,6 +86,8 @@ public class Morra {
       // if no errors break out of loop
       error = false;
     }
+
+    moveHistory.add(playerFingers);
 
     // Print out User input and Jarvis input if passes error checking
     MessageCli.PRINT_INFO_HAND.printMessage(name, playerFingersString, playerSumString);
