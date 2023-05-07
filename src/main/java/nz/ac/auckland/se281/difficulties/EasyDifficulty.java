@@ -1,10 +1,10 @@
 package nz.ac.auckland.se281.difficulties;
 
-import nz.ac.auckland.se281.strategies.Strategy;
+import nz.ac.auckland.se281.strategies.RandomStrategy;
 
 public class EasyDifficulty extends DifficultyLevel {
 
-    public EasyDifficulty(Strategy strategy) {
-        super(strategy);
+    public EasyDifficulty() {
+        super(new RandomStrategy());
     }
 }

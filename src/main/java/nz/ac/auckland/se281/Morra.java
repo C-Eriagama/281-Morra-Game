@@ -1,12 +1,15 @@
 package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.Difficulty;
+import nz.ac.auckland.se281.difficulties.DifficultyFactory;
+import nz.ac.auckland.se281.difficulties.DifficultyLevel;
 
 public class Morra {
 
   // Game Variables
   private int round = 0;
   private String name = "";
+  private DifficultyLevel difficultyLevel;
 
   public Morra() {
   }
@@ -14,6 +17,10 @@ public class Morra {
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(name);
+
+    // Create difficulty level
+    DifficultyFactory difficultyFactory = new DifficultyFactory();
+    difficultyLevel = difficultyFactory.createDifficultyLevel(difficulty);
   }
 
   public void play() {
