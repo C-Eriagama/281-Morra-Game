@@ -10,4 +10,12 @@ public abstract class DifficultyLevel {
         this.strategy = strategy;
     }
 
+    public Strategy getStrategy() {
+        return strategy;
+    }
+
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
+    }
+
 }

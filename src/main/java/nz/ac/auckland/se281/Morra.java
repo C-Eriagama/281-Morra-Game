@@ -19,8 +19,7 @@ public class Morra {
     MessageCli.WELCOME_PLAYER.printMessage(name);
 
     // Create difficulty level
-    DifficultyFactory difficultyFactory = new DifficultyFactory();
-    difficultyLevel = difficultyFactory.createDifficultyLevel(difficulty);
+    difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty);
   }
 
   public void play() {
@@ -68,6 +67,12 @@ public class Morra {
     // Print out input if passes error checking
     MessageCli.PRINT_INFO_HAND.printMessage(name, playerFingersString, playerSumString);
 
+    // Get computer input
+    int jarvisFingers = difficultyLevel.getStrategy().determineFingers();
+    int jarvisSum = difficultyLevel.getStrategy().determineSum();
+
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", Integer.toString(jarvisFingers),
+        Integer.toString(jarvisSum));
   }
 
   public void showStats() {
