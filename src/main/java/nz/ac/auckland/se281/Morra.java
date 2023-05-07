@@ -22,7 +22,10 @@ public class Morra {
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     name = options[0];
     MessageCli.WELCOME_PLAYER.printMessage(name);
+
+    // reset variables
     moveHistory.clear();
+    round = 0;
 
     // Create difficulty level
     difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty, moveHistory);

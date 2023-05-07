@@ -6,24 +6,24 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class DifficultyFactory {
 
-    public static DifficultyLevel createDifficultyLevel(Difficulty difficulty, List<Integer> moveHistory) {
+  public static DifficultyLevel createDifficultyLevel(Difficulty difficulty, List<Integer> moveHistory) {
 
-        // Create difficulty level based on difficulty
-        switch (difficulty) {
-            case EASY:
+    // Create difficulty level based on difficulty
+    switch (difficulty) {
+      case EASY:
 
-                return new EasyDifficulty();
+        return new EasyDifficulty();
 
-            case MEDIUM:
+      case MEDIUM:
 
-                return new MediumDifficulty(moveHistory);
-            case HARD:
+        return new MediumDifficulty(moveHistory);
+      case HARD:
 
-                return null;
+        return null;
 
-            default:
-                return null;
-        }
+      default:
+        return null;
     }
+  }
 
 }

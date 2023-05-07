@@ -7,18 +7,18 @@ import nz.ac.auckland.se281.strategies.RandomStrategy;
 
 public class MediumDifficulty extends DifficultyLevel {
 
-    List<Integer> moveHistory;
+  List<Integer> moveHistory;
 
-    public MediumDifficulty(List<Integer> moveHistory) {
-        super(new RandomStrategy());
-        this.moveHistory = moveHistory;
-    }
+  public MediumDifficulty(List<Integer> moveHistory) {
+    super(new RandomStrategy());
+    this.moveHistory = moveHistory;
+  }
 
-    @Override
-    public void updateStrategy() {
-        if (moveHistory.size() == 3) {
-            this.setStrategy(new AverageStrategy(moveHistory));
-        }
+  @Override
+  public void updateStrategy() {
+    if (moveHistory.size() == 3) {
+      this.setStrategy(new AverageStrategy(moveHistory));
     }
+  }
 
 }

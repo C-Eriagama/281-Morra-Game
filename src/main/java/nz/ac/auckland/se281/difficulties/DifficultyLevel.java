@@ -4,20 +4,20 @@ import nz.ac.auckland.se281.strategies.Strategy;
 
 public abstract class DifficultyLevel {
 
-    protected Strategy strategy;
+  protected Strategy strategy;
 
-    public DifficultyLevel(Strategy strategy) {
-        this.strategy = strategy;
-    }
+  public DifficultyLevel(Strategy strategy) {
+    this.strategy = strategy;
+  }
 
-    public Strategy getStrategy() {
-        return strategy;
-    }
+  public Strategy getStrategy() {
+    return strategy;
+  }
 
-    public void setStrategy(Strategy strategy) {
-        this.strategy = strategy;
-    }
+  public void setStrategy(Strategy strategy) {
+    this.strategy = strategy;
+  }
 
-    public abstract void updateStrategy();
+  public abstract void updateStrategy();
 
 }
