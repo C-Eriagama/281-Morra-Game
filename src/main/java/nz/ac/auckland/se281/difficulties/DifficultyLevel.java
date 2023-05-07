@@ -4,7 +4,7 @@ import nz.ac.auckland.se281.strategies.Strategy;
 
 public abstract class DifficultyLevel {
 
-    private Strategy strategy;
+    protected Strategy strategy;
 
     public DifficultyLevel(Strategy strategy) {
         this.strategy = strategy;
@@ -17,5 +17,7 @@ public abstract class DifficultyLevel {
     public void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
+
+    public abstract void updateStrategy();
 
 }

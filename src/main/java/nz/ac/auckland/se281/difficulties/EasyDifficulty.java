@@ -7,4 +7,8 @@ public class EasyDifficulty extends DifficultyLevel {
     public EasyDifficulty() {
         super(new RandomStrategy());
     }
+
+    @Override
+    public void updateStrategy() {
+    }
 }
