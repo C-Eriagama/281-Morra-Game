@@ -10,7 +10,7 @@ public class Morra {
   private int round = 0;
   private String name = "";
   private DifficultyLevel difficultyLevel;
-  private String Jarvis = "Jarvis";
+  private String jarvis = "Jarvis";
 
   public Morra() {
   }
@@ -85,7 +85,7 @@ public class Morra {
 
     // Print out User input and Jarvis input if passes error checking
     MessageCli.PRINT_INFO_HAND.printMessage(name, playerFingersString, playerSumString);
-    MessageCli.PRINT_INFO_HAND.printMessage(Jarvis, Integer.toString(jarvisFingers),
+    MessageCli.PRINT_INFO_HAND.printMessage(jarvis, Integer.toString(jarvisFingers),
         Integer.toString(jarvisSum));
 
     // Calculate and output the winner of the round
@@ -94,9 +94,11 @@ public class Morra {
 
   // Method to calculate the winner of the round
   public void roundResult(int playerFingers, int playerSum, int jarvisFingers, int jarvisSum) {
+    // Initialise variables
     int sum = playerFingers + jarvisFingers;
-    String winner = "";
+    String winner;
 
+    // Determines winner
     if (playerSum == jarvisSum || (playerSum != sum && jarvisSum != sum)) {
       winner = "DRAW";
     } else if (playerSum == sum) {
