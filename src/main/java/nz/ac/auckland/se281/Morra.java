@@ -28,7 +28,6 @@ public class Morra {
     // Start new round and ask for input
     round++;
     MessageCli.START_ROUND.printMessage(Integer.toString(round));
-    MessageCli.ASK_INPUT.printMessage();
     boolean error = true;
 
     // Initialize round variables
@@ -45,15 +44,29 @@ public class Morra {
     while (error) {
 
       // Get input from user
+      MessageCli.ASK_INPUT.printMessage();
       String input = Utils.scanner.nextLine();
+
+      // Check if input contains a space
+      if (!input.contains(" ")) {
+        MessageCli.INVALID_INPUT.printMessage();
+        continue;
+      }
+
+      // Split input into fingers and sum
       String[] fingerSum = input.split(" ");
       playerFingersString = fingerSum[0];
       playerSumString = fingerSum[1];
 
+      // Check valid number of inputs;
+      if (fingerSum.length != 2) {
+        MessageCli.INVALID_INPUT.printMessage();
+        continue;
+      }
+
       // Check if inputs are integers
       if (!Utils.isInteger(playerFingersString) || !Utils.isInteger(playerSumString)) {
         MessageCli.INVALID_INPUT.printMessage();
-        error = true;
         continue;
       }
 
@@ -63,7 +76,6 @@ public class Morra {
       // Check if inputs are within range
       if (playerFingers < 1 || playerFingers > 5 || playerSum < 1 || playerSum > 10) {
         MessageCli.INVALID_INPUT.printMessage();
-        error = true;
         continue;
       }
 
@@ -71,13 +83,12 @@ public class Morra {
       error = false;
     }
 
-    // Print out User input and Jarvis inputn if passes error checking
+    // Print out User input and Jarvis input if passes error checking
     MessageCli.PRINT_INFO_HAND.printMessage(name, playerFingersString, playerSumString);
-
     MessageCli.PRINT_INFO_HAND.printMessage(Jarvis, Integer.toString(jarvisFingers),
         Integer.toString(jarvisSum));
 
-    // Calculate the winner of the round
+    // Calculate and output the winner of the round
     roundResult(playerFingers, playerSum, jarvisFingers, jarvisSum);
   }
 
