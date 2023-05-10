@@ -1,7 +1,6 @@
 package nz.ac.auckland.se281.strategies;
 
 import java.util.List;
-
 import nz.ac.auckland.se281.Utils;
 
 public class AverageStrategy implements Strategy {
