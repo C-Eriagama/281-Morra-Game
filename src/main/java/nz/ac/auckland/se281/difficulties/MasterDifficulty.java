@@ -8,12 +8,14 @@ import nz.ac.auckland.se281.strategies.TopStrategy;
 public class MasterDifficulty extends DifficultyLevel {
 
   private List<Integer> moveHistory;
-  private TopStrategy topStrategy = new TopStrategy(moveHistory);
-  private AverageStrategy averageStrategy = new AverageStrategy(moveHistory);
+  private TopStrategy topStrategy;
+  private AverageStrategy averageStrategy;
 
   public MasterDifficulty(List<Integer> moveHistory) {
     super(new RandomStrategy());
     this.moveHistory = moveHistory;
+    this.topStrategy = new TopStrategy(moveHistory);
+    this.averageStrategy = new AverageStrategy(moveHistory);
   }
 
   @Override
