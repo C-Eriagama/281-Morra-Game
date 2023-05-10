@@ -8,6 +8,8 @@ import nz.ac.auckland.se281.strategies.TopStrategy;
 public class MasterDifficulty extends DifficultyLevel {
 
   private List<Integer> moveHistory;
+  private TopStrategy topStrategy = new TopStrategy(moveHistory);
+  private AverageStrategy averageStrategy = new AverageStrategy(moveHistory);
 
   public MasterDifficulty(List<Integer> moveHistory) {
     super(new RandomStrategy());
@@ -17,13 +19,13 @@ public class MasterDifficulty extends DifficultyLevel {
   @Override
   public void updateStrategy() {
 
-    // Alternate strategy after 3 rounds
+    // Alternate between Average Strategy and Top Strategy after 3 rounds
     if (moveHistory.size() >= 3) {
 
       if (moveHistory.size() % 2 == 0) {
-        this.setStrategy(new TopStrategy(moveHistory));
+        this.setStrategy(topStrategy);
       } else {
-        this.setStrategy(new AverageStrategy(moveHistory));
+        this.setStrategy(averageStrategy);
       }
 
     }

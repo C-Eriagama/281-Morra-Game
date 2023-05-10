@@ -26,7 +26,7 @@ public class Morra {
     player = new Human(options[0]);
     MessageCli.WELCOME_PLAYER.printMessage(player.getName());
 
-    // reset variables
+    // reset game variables
     moveHistory.clear();
     round = 0;
 
@@ -48,7 +48,6 @@ public class Morra {
 
     moveHistory.add(player.getFingers());
 
-    // Print out User input and Jarvis input if passes error checking
     printHandInfo(player);
     printHandInfo(jarvis);
 
@@ -66,6 +65,7 @@ public class Morra {
 
   // Method to calculate the winner of the round
   public void determineRoundResult() {
+
     // Initialise variables
     int sum = player.getFingers() + jarvis.getFingers();
     int humanSum = player.getSum();
