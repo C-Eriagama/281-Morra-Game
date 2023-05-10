@@ -19,8 +19,6 @@ public class Morra {
   private List<Integer> moveHistory = new ArrayList<>();
 
   public Morra() {
-    jarvis = new Ai("Jarvis", difficultyLevel);
-    return;
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
@@ -34,6 +32,7 @@ public class Morra {
 
     // Create difficulty level
     difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty, moveHistory);
+    jarvis = new Ai("Jarvis", difficultyLevel);
   }
 
   public void play() {

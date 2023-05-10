@@ -28,6 +28,7 @@ public class TopStrategy implements Strategy {
   public int calculateTop() {
     int top = 0;
     int size = moveHistory.size();
+    int topCount = 0;
 
     // Loop through moveHistory and find most played fingers
     for (int i = 0; i < size; i++) {
@@ -40,7 +41,9 @@ public class TopStrategy implements Strategy {
         }
       }
 
-      if (count > top) {
+      // Check if count is greater than topCount
+      if (count > topCount) {
+        topCount = count;
         top = moveHistory.get(i);
       }
     }
