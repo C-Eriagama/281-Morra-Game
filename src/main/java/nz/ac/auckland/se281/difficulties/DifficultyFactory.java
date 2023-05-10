@@ -18,7 +18,7 @@ public class DifficultyFactory {
         return new MediumDifficulty(moveHistory);
       case HARD:
 
-        return null;
+        return new HardDifficulty(moveHistory);
 
       default:
         return null;
