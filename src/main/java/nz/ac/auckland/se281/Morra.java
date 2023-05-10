@@ -5,22 +5,28 @@ import java.util.List;
 import nz.ac.auckland.se281.Main.Difficulty;
 import nz.ac.auckland.se281.difficulties.DifficultyFactory;
 import nz.ac.auckland.se281.difficulties.DifficultyLevel;
+import nz.ac.auckland.se281.players.Ai;
+import nz.ac.auckland.se281.players.Human;
+import nz.ac.auckland.se281.players.Player;
 
 public class Morra {
 
   // Game Variables
+  private Human player;
+  private Ai jarvis;
   private int round = 0;
-  private String name = "";
   private DifficultyLevel difficultyLevel;
-  private String jarvis = "Jarvis";
   private List<Integer> moveHistory = new ArrayList<>();
 
   public Morra() {
+    jarvis = new Ai("Jarvis", difficultyLevel);
+    return;
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
-    name = options[0];
-    MessageCli.WELCOME_PLAYER.printMessage(name);
+    // Create player
+    player = new Human(options[0]);
+    MessageCli.WELCOME_PLAYER.printMessage(player.getName());
 
     // reset variables
     moveHistory.clear();
@@ -36,82 +42,41 @@ public class Morra {
     round++;
     difficultyLevel.updateStrategy();
     MessageCli.START_ROUND.printMessage(Integer.toString(round));
-    boolean error = true;
 
-    // Initialize round variables
-    String playerFingersString = "";
-    String playerSumString = "";
-    int playerFingers = 0;
-    int playerSum = 0;
+    // Get input from player and Jarvis
+    player.setInput();
+    jarvis.setInput();
 
-    // Get computer input
-    int jarvisFingers = difficultyLevel.getStrategy().determineFingers();
-    int jarvisSum = difficultyLevel.getStrategy().determineSum();
-
-    // error checking
-    while (error) {
-
-      // Get input from user
-      MessageCli.ASK_INPUT.printMessage();
-      String input = Utils.scanner.nextLine();
-
-      // Check if input contains a space
-      if (!input.contains(" ")) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-
-      // Split input into fingers and sum
-      String[] fingerSum = input.split(" ");
-      playerFingersString = fingerSum[0];
-      playerSumString = fingerSum[1];
-
-      // Check valid number of inputs;
-      if (fingerSum.length != 2) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-
-      // Check if inputs are integers
-      if (!Utils.isInteger(playerFingersString) || !Utils.isInteger(playerSumString)) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-
-      playerFingers = Integer.parseInt(playerFingersString);
-      playerSum = Integer.parseInt(playerSumString);
-
-      // Check if inputs are within range
-      if (playerFingers < 1 || playerFingers > 5 || playerSum < 1 || playerSum > 10) {
-        MessageCli.INVALID_INPUT.printMessage();
-        continue;
-      }
-
-      // if no errors break out of loop
-      error = false;
-    }
-
-    moveHistory.add(playerFingers);
+    moveHistory.add(player.getFingers());
 
     // Print out User input and Jarvis input if passes error checking
-    MessageCli.PRINT_INFO_HAND.printMessage(name, playerFingersString, playerSumString);
-    MessageCli.PRINT_INFO_HAND.printMessage(jarvis, Integer.toString(jarvisFingers),
-        Integer.toString(jarvisSum));
+    printHandInfo(player);
+    printHandInfo(jarvis);
 
     // Calculate and output the winner of the round
-    roundResult(playerFingers, playerSum, jarvisFingers, jarvisSum);
+    determineRoundResult();
+  }
+
+  // Method to print out the hand information of a player
+  public void printHandInfo(Player player) {
+    String name = player.getName();
+    String fingers = Integer.toString(player.getFingers());
+    String sum = Integer.toString(player.getSum());
+    MessageCli.PRINT_INFO_HAND.printMessage(name, fingers, sum);
   }
 
   // Method to calculate the winner of the round
-  public void roundResult(int playerFingers, int playerSum, int jarvisFingers, int jarvisSum) {
+  public void determineRoundResult() {
     // Initialise variables
-    int sum = playerFingers + jarvisFingers;
+    int sum = player.getFingers() + jarvis.getFingers();
+    int humanSum = player.getSum();
+    int aiSum = jarvis.getSum();
     String winner;
 
     // Determines winner
-    if (playerSum == jarvisSum || (playerSum != sum && jarvisSum != sum)) {
+    if (humanSum == aiSum || (humanSum != sum && aiSum != sum)) {
       winner = "DRAW";
-    } else if (playerSum == sum) {
+    } else if (humanSum == sum) {
       winner = "HUMAN_WINS";
     } else {
       winner = "AI_WINS";
