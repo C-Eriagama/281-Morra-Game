@@ -18,7 +18,7 @@ public class MasterDifficulty extends DifficultyLevel {
   public void updateStrategy() {
 
     // Alternate strategy after 3 rounds
-    if (moveHistory.size() > 3) {
+    if (moveHistory.size() >= 3) {
 
       if (moveHistory.size() % 2 == 0) {
         this.setStrategy(new TopStrategy(moveHistory));
