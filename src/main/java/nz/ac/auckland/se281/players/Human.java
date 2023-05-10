@@ -3,36 +3,14 @@ package nz.ac.auckland.se281.players;
 import nz.ac.auckland.se281.MessageCli;
 import nz.ac.auckland.se281.Utils;
 
-public class Human {
-
-  private String name;
-  private int fingers;
-  private int sum;
+public class Human extends Player {
 
   public Human(String name) {
-    this.name = name;
+    super(name);
+    return;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public int getFingers() {
-    return fingers;
-  }
-
-  public String getFingersString() {
-    return Integer.toString(fingers);
-  }
-
-  public int getSum() {
-    return sum;
-  }
-
-  public String getSumString() {
-    return Integer.toString(sum);
-  }
-
+  @Override
   public void setInput() {
     // Initialise variables
     boolean error = true;
