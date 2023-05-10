@@ -1,8 +1,8 @@
 package nz.ac.auckland.se281.difficulties;
 
 import java.util.List;
-import nz.ac.auckland.se281.strategies.TopStrategy;
 import nz.ac.auckland.se281.strategies.RandomStrategy;
+import nz.ac.auckland.se281.strategies.TopStrategy;
 
 public class HardDifficulty extends DifficultyLevel {
 

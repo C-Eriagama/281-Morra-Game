@@ -16,7 +16,6 @@ public class Ai extends Player {
   public void setInput() {
     fingers = difficultyLevel.getStrategy().determineFingers();
     sum = difficultyLevel.getStrategy().determineSum();
-    return;
   }
 
 }

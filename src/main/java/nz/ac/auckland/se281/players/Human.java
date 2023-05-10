@@ -14,8 +14,6 @@ public class Human extends Player {
   public void setInput() {
     // Initialise variables
     boolean error = true;
-    String playerFingersString = "";
-    String playerSumString = "";
 
     // error checking
     while (error) {
@@ -32,8 +30,8 @@ public class Human extends Player {
 
       // Split input into fingers and sum
       String[] fingerSum = input.split(" ");
-      playerFingersString = fingerSum[0];
-      playerSumString = fingerSum[1];
+      String playerFingersString = fingerSum[0];
+      String playerSumString = fingerSum[1];
 
       // Check valid number of inputs;
       if (fingerSum.length != 2) {

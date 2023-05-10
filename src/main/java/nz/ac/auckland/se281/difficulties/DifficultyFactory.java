@@ -5,7 +5,8 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class DifficultyFactory {
 
-  public static DifficultyLevel createDifficultyLevel(Difficulty difficulty, List<Integer> moveHistory) {
+  public static DifficultyLevel createDifficultyLevel(Difficulty difficulty,
+      List<Integer> moveHistory) {
 
     // Create difficulty level based on difficulty
     switch (difficulty) {
