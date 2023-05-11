@@ -15,6 +15,7 @@ public class Morra {
   private Human player;
   private Ai jarvis;
   private int round = 0;
+  private boolean gameStarted = false;
   private DifficultyLevel difficultyLevel;
   private List<Integer> moveHistory = new ArrayList<>();
 
@@ -22,6 +23,7 @@ public class Morra {
   }
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+
     // Create player
     player = new Human(options[0]);
     MessageCli.WELCOME_PLAYER.printMessage(player.getName());
@@ -29,6 +31,9 @@ public class Morra {
     // reset game variables
     moveHistory.clear();
     round = 0;
+    jarvis.resetPoints();
+    player.resetPoints();
+    gameStarted = true;
 
     // Create difficulty level
     difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty, moveHistory);
@@ -36,6 +41,12 @@ public class Morra {
   }
 
   public void play() {
+
+    // Check if game has started
+    if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
 
     // Start new round and ask for input
     round++;

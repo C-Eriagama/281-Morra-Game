@@ -5,6 +5,7 @@ public abstract class Player {
   protected String name;
   protected int fingers;
   protected int sum;
+  protected int points;
 
   public Player(String name) {
     this.name = name;
@@ -30,5 +31,23 @@ public abstract class Player {
 
   public String getSumString() {
     return Integer.toString(sum);
+  }
+
+  public int getPoints() {
+    return points;
+  }
+
+  public String getPointsString() {
+    return Integer.toString(points);
+  }
+
+  public void incrementPoints() {
+    points++;
+    return;
+  }
+
+  public void resetPoints() {
+    points = 0;
+    return;
   }
 }
