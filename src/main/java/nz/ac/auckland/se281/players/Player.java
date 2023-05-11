@@ -44,11 +44,9 @@ public abstract class Player {
 
   public void incrementPoints() {
     points++;
-    return;
   }
 
   public void resetPoints() {
     points = 0;
-    return;
   }
 }
