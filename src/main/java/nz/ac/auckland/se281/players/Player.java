@@ -9,6 +9,7 @@ public abstract class Player {
 
   public Player(String name) {
     this.name = name;
+    this.points = 0;
   }
 
   public abstract void setInput();
