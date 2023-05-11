@@ -98,15 +98,37 @@ public class Morra {
 
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(winner);
 
+    checkGameOver(player);
+    checkGameOver(jarvis);
+
+  }
+
+  // Method to check if a player has won the game
+  public void checkGameOver(Player player) {
     if (player.getPoints() == pointsToWin) {
       MessageCli.END_GAME.printMessage(player.getName(), Integer.toString(round));
-      gameStarted = false;
-    } else if (jarvis.getPoints() == pointsToWin) {
-      MessageCli.END_GAME.printMessage(jarvis.getName(), Integer.toString(round));
       gameStarted = false;
     }
   }
 
   public void showStats() {
+
+    // Check if game has started
+    if (!gameStarted) {
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
+
+    playerStats(player);
+    playerStats(jarvis);
+
+  }
+
+  // Method to print out the stats of a player
+  public void playerStats(Player player) {
+    String name = player.getName();
+    String points = player.getPointsString();
+    String pointsNeeded = Integer.toString(pointsToWin - player.getPoints());
+    MessageCli.PRINT_PLAYER_WINS.printMessage(name, points, pointsNeeded);
   }
 }
