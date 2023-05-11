@@ -16,13 +16,14 @@ public class Morra {
   private Ai jarvis;
   private int round = 0;
   private boolean gameStarted = false;
+  private int pointsToWin;
   private DifficultyLevel difficultyLevel;
   private List<Integer> moveHistory = new ArrayList<>();
 
   public Morra() {
   }
 
-  public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+  public void newGame(Difficulty difficulty, int pointsWin, String[] options) {
 
     // Create player
     player = new Human(options[0]);
@@ -38,6 +39,7 @@ public class Morra {
     // Create difficulty level
     difficultyLevel = DifficultyFactory.createDifficultyLevel(difficulty, moveHistory);
     jarvis = new Ai("Jarvis", difficultyLevel);
+    pointsToWin = pointsWin;
   }
 
   public void play() {
@@ -83,16 +85,26 @@ public class Morra {
     int aiSum = jarvis.getSum();
     String winner;
 
-    // Determines winner
+    // Determines winner and increments their points
     if (humanSum == aiSum || (humanSum != sum && aiSum != sum)) {
       winner = "DRAW";
     } else if (humanSum == sum) {
       winner = "HUMAN_WINS";
+      player.incrementPoints();
     } else {
       winner = "AI_WINS";
+      jarvis.incrementPoints();
     }
 
     MessageCli.PRINT_OUTCOME_ROUND.printMessage(winner);
+
+    if (player.getPoints() == pointsToWin) {
+      MessageCli.END_GAME.printMessage(player.getName(), Integer.toString(round));
+      gameStarted = false;
+    } else if (jarvis.getPoints() == pointsToWin) {
+      MessageCli.END_GAME.printMessage(jarvis.getName(), Integer.toString(round));
+      gameStarted = false;
+    }
   }
 
   public void showStats() {
