@@ -36,7 +36,7 @@ public class TopStrategy implements Strategy {
 
       // Count how many times a finger has been played
       for (int j = 0; j < size; j++) {
-        if (moveHistory.get(j) == moveHistory.get(i)) {
+        if (moveHistory.get(j).equals(moveHistory.get(i))) {
           count++;
         }
       }
